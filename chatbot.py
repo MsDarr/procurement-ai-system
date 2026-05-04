@@ -1,7 +1,11 @@
 import streamlit as st
+from ai_service import ask_ai   #  connect AI
 
 def show():
 
+    # =========================
+    # HEADER
+    # =========================
     st.markdown("""
     <div class="ai-page-title">
         <div>
@@ -14,7 +18,18 @@ def show():
 
     center, right = st.columns([2.6, 1.4], gap="large")
 
+    # =========================
+    # SESSION MEMORY (CHAT HISTORY)
+    # =========================
+    if "messages" not in st.session_state:
+        st.session_state.messages = []
+
+    # =========================
+    # CENTER PANEL
+    # =========================
     with center:
+
+        # HERO CARD
         st.markdown("""
         <div class="hero-card">
             <div class="bot-avatar">🤖</div>
@@ -25,38 +40,69 @@ def show():
         </div>
         """, unsafe_allow_html=True)
 
+        # =========================
+        # QUICK QUESTIONS (CONNECTED)
+        # =========================
         q1, q2, q3, q4 = st.columns(4)
+
+        def quick_prompt(text):
+            answer = ask_ai(text, context=get_context())
+            st.session_state.messages.append(("user", text))
+            st.session_state.messages.append(("bot", answer))
+
         with q1:
-            st.button("📊 What is HHI?")
+            if st.button("📊 HHI"):
+                quick_prompt("What is HHI and how is it used in procurement?")
+
         with q2:
-            st.button("🛡️ Explain risk gauge")
+            if st.button("🛡️ Risk"):
+                quick_prompt("Explain the procurement risk gauge")
+
         with q3:
-            st.button("🧠 How does ML work?")
+            if st.button("🧠 ML"):
+                quick_prompt("How does the machine learning model work?")
+
         with q4:
-            st.button("👥 Top vendors")
+            if st.button("👥 Vendors"):
+                quick_prompt("Who are the top vendors and what does it mean?")
 
-        st.markdown("""
-        <div class="user-bubble">
-            <b>You</b><br>
-            What does the risk gauge mean?
-        </div>
+        st.markdown("<br>", unsafe_allow_html=True)
 
-        <div class="bot-bubble">
-            <b>🤖 Darrah AI Assistant</b><br><br>
-            The risk gauge represents the overall procurement risk level based on the risk scoring model.<br><br>
-            ✅ High contract value<br>
-            ✅ Emergency procurement<br>
-            ✅ Sole-source contracts<br>
-            ✅ Vendor concentration<br>
-            ✅ Unusual spending patterns<br><br>
-            The gauge gives a quick overview of whether the procurement environment is Low Risk, Moderate Risk, or High Risk.
-        </div>
+        # =========================
+        # CHAT DISPLAY
+        # =========================
+        for role, msg in st.session_state.messages:
 
-        <div class="input-shell">
-            Ask anything about the project, data, or analysis... <span>🎤 ➤</span>
-        </div>
-        """, unsafe_allow_html=True)
+            if role == "user":
+                st.markdown(f"""
+                <div class="user-bubble">
+                    <b>You</b><br>{msg}
+                </div>
+                """, unsafe_allow_html=True)
 
+            else:
+                st.markdown(f"""
+                <div class="bot-bubble">
+                    <b>🤖 Darrah AI Assistant</b><br><br>{msg}
+                </div>
+                """, unsafe_allow_html=True)
+
+        # =========================
+        # INPUT (REAL)
+        # =========================
+        question = st.text_input("Ask anything about the project, data, or analysis...")
+
+        if question:
+            answer = ask_ai(question, context=get_context())
+
+            st.session_state.messages.append(("user", question))
+            st.session_state.messages.append(("bot", answer))
+
+            st.rerun()
+
+    # =========================
+    # RIGHT PANEL
+    # =========================
     with right:
         st.markdown("""
         <div class="side-card">
@@ -79,7 +125,24 @@ def show():
 
         <div class="side-card">
             <h3>📈 Risk Distribution</h3>
-            <div class="risk-placeholder">Risk chart here</div>
+            <div class="risk-placeholder">Chart here</div>
             <div class="risk-level">Low Risk</div>
         </div>
         """, unsafe_allow_html=True)
+
+
+# =========================
+# CONTEXT FUNCTION (VERY IMPORTANT)
+# =========================
+def get_context():
+    return """
+    This system analyzes government procurement data.
+
+    It includes:
+    - Vendor intelligence and market concentration (HHI)
+    - Risk scoring based on contract behavior
+    - NLP classification of procurement descriptions
+    - Machine learning prediction of contract values
+
+    The system is designed as an AI-powered procurement intelligence platform.
+    """
