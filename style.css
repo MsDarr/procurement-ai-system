@@ -1,0 +1,284 @@
+/* =========================
+   GLOBAL
+========================= */
+.stApp {
+    background-color: #0B0F19;
+    color: #E5E7EB;
+    font-family: 'Inter', sans-serif;
+}
+/* =========================
+   GLOBAL LAYOUT FIX
+========================= */
+
+.block-container {
+    padding-top: 4rem !important;   /* PUSH DOWN */
+    padding-bottom: 2rem;
+    max-width: 1200px;
+}
+
+/* Divider */
+.divider {
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+    margin: 18px 0 24px 0;
+}
+
+/* Section spacing */
+.section {
+    margin-top: 30px;
+}
+
+/* Inputs spacing */
+.input-group {
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+/* =========================
+   HEADER
+========================= */
+.big-title {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    margin-bottom: 4px;
+}
+
+.subtitle {
+    color: #9CA3AF;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+/* =========================
+   KPI CARDS (INSPIRED BY POWER )
+========================= */
+.kpi-box {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 12px;
+    border-radius: 6px;
+}
+
+.kpi-label {
+    font-size: 11px;
+    color: #6B7280;
+}
+.kpi-value {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.divider {
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+    margin: 20px 0;
+}
+.analysis-box {
+    margin-top: 12px;
+    padding: 14px;
+    border-left: 3px solid #4F46E5;
+    background: rgba(255,255,255,0.02);
+    font-size: 13px;
+    color: #D1D5DB;
+    line-height: 1.6;
+    border-radius: 6px;
+}
+
+.kpi-card {
+    background: linear-gradient(135deg, #151A2E, #0F172A);
+    padding: 18px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.05);
+    height: 120px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    transition: all 0.25s ease;
+}
+
+.kpi-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 0px 15px rgba(79, 70, 229, 0.25);
+}
+
+.kpi-title {
+    font-size: 12px;
+    color: #9CA3AF;
+}
+
+.kpi-value {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+.kpi-subtitle {
+    font-size: 11px;
+    color: #6B7280;
+    margin-top: 2px;
+}
+
+/* =========================
+   SECTION TITLES (clean & aligned)
+========================= */
+.section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #D1D5DB;
+    margin-bottom: 8px;
+    margin-top: 5px;
+}
+
+/* =========================
+   CHART CARDS (THIS FIXES MESS)
+========================= */
+.chart-card {
+    background: #111827;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.05);
+    margin-bottom: 18px;
+}
+
+/* force spacing consistency */
+.stPlotlyChart {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* =========================
+   GRID SPACING CONTROL
+========================= */
+.block-container {
+    padding-top: 1rem;
+    padding-bottom: 1.5rem;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+[data-testid="stSidebar"] {
+    background-color: #111827;
+    border-right: 1px solid rgba(255,255,255,0.05);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.stButton>button {
+    background: linear-gradient(90deg, #4F46E5, #7C3AED);
+    color: white;
+    border-radius: 10px;
+    border: none;
+    padding: 8px 16px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.stButton>button:hover {
+    box-shadow: 0px 0px 10px rgba(124, 58, 237, 0.4);
+}
+
+/* =========================
+   DATA TABLE
+========================= */
+[data-testid="stDataFrame"] {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* =========================
+   DIVIDER (clean lines like Power BI)
+========================= */
+hr {
+    border: none;
+    height: 1px;
+    background: rgba(255,255,255,0.06);
+    margin: 10px 0 15px 0;
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #4F46E5;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0B0F19;
+}
+/* FORCE equal height & alignment */
+div[data-testid="column"] > div {
+    height: 100%;
+}
+
+/* make KPI cards perfectly aligned */
+.kpi-card {
+    height: 115px;
+    justify-content: center;
+}
+/* =========================
+   SELECTBOX (Vendor Filter)
+========================= */
+
+/* Container */
+div[data-baseweb="select"] {
+    background: #111827;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: all 0.2s ease;
+}
+
+/* Hover effect */
+div[data-baseweb="select"]:hover {
+    border: 1px solid #636EFA;
+    box-shadow: 0px 0px 8px rgba(99, 110, 250, 0.4);
+}
+
+/* Click (focus) effect */
+div[data-baseweb="select"]:focus-within {
+    border: 1px solid #7C3AED;
+    box-shadow: 0px 0px 10px rgba(124, 58, 237, 0.5);
+}
+
+/* Text inside */
+div[data-baseweb="select"] span {
+    color: #E5E7EB !important;
+    font-size: 14px;
+}
+/* =========================
+   RISK COLORS - VISUAL IMPACT)
+========================= */
+
+/* High Risk KPI highlight */
+.kpi-risk {
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    box-shadow: 0px 0px 10px rgba(239, 68, 68, 0.3);
+}
+
+/* Risk labels */
+.risk-high {
+    color: #490303;
+    font-weight: 600;
+}
+
+.risk-medium {
+    color: #F59E0B;
+    font-weight: 600;
+}
+
+.risk-low {
+    color: #8d0baa;
+    font-weight: 600;
+}
+/* =========================
+   SIDEBAR MODERN (CN TOWER)
+========================= */
