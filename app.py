@@ -32,7 +32,7 @@ def load_css():
     except:
         pass
 
-# ✅ CALL IT (THIS WAS MISSING)
+#  CALL IT (THIS WAS MISSING)
 load_css()
 
 # =========================
