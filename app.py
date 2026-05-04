@@ -24,13 +24,19 @@ st.set_page_config(
 # LOAD CSS
 # =========================
 def load_css():
-    try:
-        css_path = os.path.join("assets", "style.css")
-        if os.path.exists(css_path):
-            with open(css_path) as f:
-                st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-    except:
-        pass
+    with open("assets/style.css") as f:
+        css = f.read()
+        st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
+
+        # FORCE BODY STYLE
+        st.markdown("""
+        <style>
+        html, body, [class*="css"]  {
+            background-color: #0B0F19 !important;
+            color: #E5E7EB !important;
+        }
+        </style>
+        """, unsafe_allow_html=True)
 
 #  CALL IT (THIS WAS MISSING)
 load_css()
