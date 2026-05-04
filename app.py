@@ -11,7 +11,7 @@ import risk
 import nlp
 import prediction
 import chatbot
-
+from ai_service import ask_ai
 
 
 # =========================
