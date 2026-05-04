@@ -31,11 +31,14 @@ def load_css():
 load_css()
 
 # =========================
-# LOAD DATA
+# LOAD DATA (GOOGLE DRIVE)
 # =========================
 @st.cache_data
 def load_data():
-    return pd.read_csv("AI_Procurement_Intelligence.csv")
+    url = "https://drive.google.com/uc?id=1t2HYI1D3QWH2okLOrpYg81MZRJI4cI-k"
+    return pd.read_csv(url)
+
+df = load_data()
 
 
 # =========================
