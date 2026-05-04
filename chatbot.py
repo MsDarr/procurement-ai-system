@@ -2,7 +2,7 @@ import streamlit as st
 
 
 def show():
-    st.title("✨ Darrah AI Assistant")
+    st.title(" Darrah AI Assistant")
     st.markdown("Your intelligent guide to procurement analytics")
 
     st.info("Hello! I'm Darrah AI Assistant ")
