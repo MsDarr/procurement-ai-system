@@ -282,3 +282,66 @@ div[data-baseweb="select"] span {
 /* =========================
    SIDEBAR MODERN (CN TOWER)
 ========================= */
+/* =========================
+    AI ASSISTANT UI
+========================= */
+
+/* AI MAIN CARD */
+.ai-card {
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.05);
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 20px rgba(79, 70, 229, 0.15);
+}
+
+/* CHAT USER (RIGHT) */
+.chat-user {
+    background: linear-gradient(90deg, #4F46E5, #7C3AED);
+    color: white;
+    padding: 10px 14px;
+    border-radius: 12px;
+    text-align: right;
+    max-width: 60%;
+    margin-left: auto;
+    margin-bottom: 10px;
+}
+
+/* CHAT BOT (LEFT) */
+.chat-bot {
+    background: #111827;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.05);
+    max-width: 70%;
+    margin-bottom: 15px;
+}
+
+/* QUICK BUTTONS (pill style) */
+.stButton>button {
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 13px;
+}
+
+/* INPUT BAR */
+input[type="text"] {
+    background: #111827 !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+    border-radius: 12px !important;
+    padding: 10px !important;
+}
+
+/* INPUT FOCUS */
+input[type="text"]:focus {
+    border: 1px solid #7C3AED !important;
+    box-shadow: 0px 0px 8px rgba(124, 58, 237, 0.4);
+}
+
+
+
+
+
+
+
