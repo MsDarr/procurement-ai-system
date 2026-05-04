@@ -1,5 +1,5 @@
 import streamlit as st
-from ai_service import ai_service   #  connect AI
+from ai_service import ask_ai
 
 def show():
 
