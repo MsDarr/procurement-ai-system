@@ -286,62 +286,147 @@ div[data-baseweb="select"] span {
     AI ASSISTANT UI
 ========================= */
 
-/* AI MAIN CARD */
-.ai-card {
-    background: linear-gradient(135deg, #1e293b, #0f172a);
-    padding: 20px;
-    border-radius: 16px;
-    border: 1px solid rgba(255,255,255,0.05);
-    margin-bottom: 20px;
-    box-shadow: 0px 0px 20px rgba(79, 70, 229, 0.15);
+.ai-page-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 26px;
 }
 
-/* CHAT USER (RIGHT) */
-.chat-user {
-    background: linear-gradient(90deg, #4F46E5, #7C3AED);
-    color: white;
-    padding: 10px 14px;
-    border-radius: 12px;
-    text-align: right;
-    max-width: 60%;
-    margin-left: auto;
-    margin-bottom: 10px;
+.ai-page-title h1 {
+    font-size: 34px;
+    margin: 0;
 }
 
-/* CHAT BOT (LEFT) */
-.chat-bot {
-    background: #111827;
-    padding: 14px;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.05);
-    max-width: 70%;
-    margin-bottom: 15px;
+.ai-page-title p {
+    color: #9CA3AF;
+    margin-top: 6px;
 }
 
-/* QUICK BUTTONS (pill style) */
-.stButton>button {
+.ai-badge {
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(124, 58, 237, 0.35);
+    color: #C084FC;
+    background: rgba(124, 58, 237, 0.08);
+}
+
+.hero-card {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    padding: 28px;
     border-radius: 20px;
-    padding: 6px 14px;
-    font-size: 13px;
+    background: radial-gradient(circle at right, rgba(124,58,237,0.22), transparent 35%),
+                linear-gradient(135deg, #111827, #0F172A);
+    border: 1px solid rgba(124, 58, 237, 0.35);
+    box-shadow: 0 0 35px rgba(79,70,229,0.16);
+    margin-bottom: 22px;
 }
 
-/* INPUT BAR */
-input[type="text"] {
-    background: #111827 !important;
-    border: 1px solid rgba(255,255,255,0.08) !important;
-    border-radius: 12px !important;
-    padding: 10px !important;
+.bot-avatar {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 42px;
+    background: linear-gradient(135deg, #2563EB, #7C3AED);
+    box-shadow: 0 0 25px rgba(124,58,237,0.6);
 }
 
-/* INPUT FOCUS */
-input[type="text"]:focus {
-    border: 1px solid #7C3AED !important;
-    box-shadow: 0px 0px 8px rgba(124, 58, 237, 0.4);
+.hero-card h2 {
+    margin: 0 0 8px 0;
 }
 
+.hero-card p {
+    color: #D1D5DB;
+    line-height: 1.6;
+}
 
+.user-bubble {
+    margin: 26px 0 14px auto;
+    max-width: 58%;
+    padding: 16px 20px;
+    border-radius: 16px 16px 4px 16px;
+    background: linear-gradient(135deg, #312E81, #1E1B4B);
+    border: 1px solid rgba(124,58,237,0.35);
+}
 
+.bot-bubble {
+    margin: 0 0 24px 0;
+    padding: 22px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #0F172A, #111827);
+    border: 1px solid rgba(255,255,255,0.08);
+    line-height: 1.7;
+}
 
+.input-shell {
+    padding: 16px 20px;
+    border-radius: 16px;
+    background: #0F172A;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #9CA3AF;
+    display: flex;
+    justify-content: space-between;
+}
 
+.side-card {
+    background: linear-gradient(135deg, #111827, #0B1220);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 18px;
+}
 
+.mini-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
 
+.mini-grid div {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 14px;
+}
+
+.mini-grid span,
+.mini-grid small {
+    color: #9CA3AF;
+    font-size: 12px;
+}
+
+.mini-grid b {
+    display: block;
+    font-size: 24px;
+    margin: 6px 0;
+}
+
+.action-row {
+    padding: 13px 14px;
+    border-radius: 12px;
+    background: rgba(15,23,42,0.9);
+    border: 1px solid rgba(255,255,255,0.07);
+    margin-bottom: 8px;
+}
+
+.risk-placeholder {
+    height: 160px;
+    display: grid;
+    place-items: center;
+    color: #9CA3AF;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.03);
+}
+
+.risk-level {
+    margin-top: 14px;
+    color: #22C55E;
+    border: 1px solid rgba(34,197,94,0.35);
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 999px;
+}
