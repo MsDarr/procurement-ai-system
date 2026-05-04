@@ -11,6 +11,9 @@ import risk
 import nlp
 import prediction
 import chatbot
+from ai_service import ai_service
+
+
 
 # =========================
 # PAGE CONFIG
