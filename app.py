@@ -1,32 +1,39 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-import utils
-import overview as overview
-import vendor as vendor
-import department as department 
-import risk as risk
-import nlp as nlp
-import prediction as prediction
+import os
 
-import streamlit as st
+import utils
+import overview
+import vendor
+import department 
+import risk
+import nlp
+import prediction
 import chatbot
+
+# =========================
+# PAGE CONFIG
+# =========================
+st.set_page_config(
+    page_title="Procurement Intelligence System",
+    layout="wide"
+)
 
 # =========================
 # LOAD CSS
 # =========================
-import os
-
 def load_css():
     try:
         css_path = os.path.join("assets", "style.css")
         if os.path.exists(css_path):
             with open(css_path) as f:
                 st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-        else:
-            st.warning("CSS file not found in assets/")
-    except Exception as e:
-        st.warning("CSS loading failed")
+    except:
+        pass
+
+# ✅ CALL IT (THIS WAS MISSING)
+load_css()
 
 # =========================
 # LOAD DATA (GOOGLE DRIVE)
@@ -38,19 +45,13 @@ def load_data():
 
 df = load_data()
 
-
 # =========================
-# UTILS
+# FEATURE ENGINEERING
 # =========================
-
-
-df = load_data()
-
 df = utils.add_risk_columns(df)
 
 kpis = utils.get_kpis(df)
 trend = utils.get_spending_trend(df)
-
 
 # =========================
 # SIDEBAR
@@ -60,7 +61,6 @@ st.sidebar.title("Procurement Intelligence System")
 page = st.sidebar.radio(
     "Navigation",
     [
-    
         "Darrah AI Assistant",
         "Executive Overview",
         "Vendor Intelligence",
@@ -72,75 +72,28 @@ page = st.sidebar.radio(
 )
 
 # =========================
-# READ ME
+# PAGES
 # =========================
+if page == "Darrah AI Assistant":
+    chatbot.show()
 
-
-# =========================
-# CHATBOT 
-# =========================
-
-
-# =========================
-# EXECUTIVE OVERVIEW
-# =========================
-if page == "Executive Overview":
+elif page == "Executive Overview":
     overview.show(df, kpis, trend)
 
-# =========================
-# Vendor Intelligence
-# =========================
 elif page == "Vendor Intelligence":
     vendor.show(df)
 
-# =========================
-# Department Analysis
-# =========================
 elif page == "Department Analysis":
     department.show(df)
 
-# =========================
-# Risk Dashboard
-# =========================
 elif page == "Risk Dashboard":
     risk.show(df)
 
-
-# =========================
-# NLP Analysis
-# =========================
 elif page == "NLP Analysis":
     nlp.show(df)
 
-# =========================
-# ML Prediction
-# =========================
 elif page == "ML Prediction":
     prediction.show(df)
-
-# =========================
-# PLACEHOLDER PAGES
-# =========================
-elif page == "Vendor Intelligence":
-    st.title(" Vendor Intelligence")
-    st.info("Coming next...")
-
-elif page == "Department Analysis":
-    st.title(" Department Analysis")
-    st.info("Coming next...")
-
-elif page == "Risk Dashboard":
-    st.title(" Risk Dashboard")
-    st.info("Coming next...")
-
-elif page == "NLP Analysis":
-    st.title(" NLP Analysis")
-    st.info("Coming next...")
-
-elif page == "ML Prediction":
-    st.title(" ML Prediction")
-    st.info("Coming next...")
-
 
 # =========================
 # FOOTER
