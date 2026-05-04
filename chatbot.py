@@ -1,28 +1,25 @@
 import streamlit as st
-from ai_service import ask_ai
 
-def show():
+
+def show(df=None):
 
     # =========================
     # HEADER
     # =========================
     st.markdown("""
-    <div class="ai-page-title">
+    <div class="ai-header">
         <div>
-            <h1>✨ Darrah AI Assistant</h1>
+            <h1>Darrah AI Assistant</h1>
             <p>Your intelligent guide to procurement analytics</p>
         </div>
-        <div class="ai-badge">🧠 AI Powered</div>
+        <div class="ai-badge">AI Powered</div>
     </div>
     """, unsafe_allow_html=True)
 
+    # =========================
+    # LAYOUT (CENTER + RIGHT)
+    # =========================
     center, right = st.columns([2.6, 1.4], gap="large")
-
-    # =========================
-    # SESSION MEMORY (CHAT HISTORY)
-    # =========================
-    if "messages" not in st.session_state:
-        st.session_state.messages = []
 
     # =========================
     # CENTER PANEL
@@ -32,117 +29,115 @@ def show():
         # HERO CARD
         st.markdown("""
         <div class="hero-card">
-            <div class="bot-avatar">🤖</div>
+            <div class="bot-avatar"></div>
             <div>
-                <h2>Hello! I'm Darrah AI Assistant 👋</h2>
-                <p>I can help you understand procurement data, explain key metrics, identify risks, and provide insights to support your analysis.</p>
+                <h2>Hello! I'm Darrah AI Assistant</h2>
+                <p>
+                    I can help you understand procurement data, explain key metrics,
+                    identify risks, and provide insights to support your analysis.
+                </p>
             </div>
         </div>
         """, unsafe_allow_html=True)
 
         # =========================
-        # QUICK QUESTIONS (CONNECTED)
+        # QUICK QUESTIONS
         # =========================
+        st.markdown('<div class="section-title">Quick Questions</div>', unsafe_allow_html=True)
+
         q1, q2, q3, q4 = st.columns(4)
 
-        def quick_prompt(text):
-            answer = ask_ai(text, context=get_context())
-            st.session_state.messages.append(("user", text))
-            st.session_state.messages.append(("bot", answer))
-
         with q1:
-            if st.button("📊 HHI"):
-                quick_prompt("What is HHI and how is it used in procurement?")
+            st.markdown('<div class="q-card">What is HHI and how is it used?</div>', unsafe_allow_html=True)
 
         with q2:
-            if st.button("🛡️ Risk"):
-                quick_prompt("Explain the procurement risk gauge")
+            st.markdown('<div class="q-card">Explain the risk gauge</div>', unsafe_allow_html=True)
 
         with q3:
-            if st.button("🧠 ML"):
-                quick_prompt("How does the machine learning model work?")
+            st.markdown('<div class="q-card">How does the ML model work?</div>', unsafe_allow_html=True)
 
         with q4:
-            if st.button("👥 Vendors"):
-                quick_prompt("Who are the top vendors and what does it mean?")
+            st.markdown('<div class="q-card">Who are the top vendors?</div>', unsafe_allow_html=True)
 
         st.markdown("<br>", unsafe_allow_html=True)
 
         # =========================
-        # CHAT DISPLAY
+        # CHAT SAMPLE (STATIC UI)
         # =========================
-        for role, msg in st.session_state.messages:
+        st.markdown("""
+        <div class="chat-user">
+            <b>You</b><br>
+            What does the risk gauge mean?
+        </div>
 
-            if role == "user":
-                st.markdown(f"""
-                <div class="user-bubble">
-                    <b>You</b><br>{msg}
-                </div>
-                """, unsafe_allow_html=True)
-
-            else:
-                st.markdown(f"""
-                <div class="bot-bubble">
-                    <b>🤖 Darrah AI Assistant</b><br><br>{msg}
-                </div>
-                """, unsafe_allow_html=True)
+        <div class="chat-bot">
+            <b>Darrah AI Assistant</b><br><br>
+            The risk gauge represents the overall procurement risk level based on our scoring model.<br><br>
+            ✔ High contract value<br>
+            ✔ Emergency procurement<br>
+            ✔ Sole-source contracts<br>
+            ✔ Vendor concentration<br>
+            ✔ Unusual spending patterns<br><br>
+            It provides a quick overview of whether the environment is Low, Moderate, or High Risk.
+        </div>
+        """, unsafe_allow_html=True)
 
         # =========================
-        # INPUT (REAL)
+        # INPUT BAR (UI ONLY)
         # =========================
-        question = st.text_input("Ask anything about the project, data, or analysis...")
+        st.markdown("""
+        <div class="input-bar">
+            Ask anything about the project, data, or analysis...
+        </div>
+        """, unsafe_allow_html=True)
 
-        if question:
-            answer = ask_ai(question, context=get_context())
-
-            st.session_state.messages.append(("user", question))
-            st.session_state.messages.append(("bot", answer))
-
-            st.rerun()
+        # =========================
+        # KPI STRIP
+        # =========================
+        st.markdown("""
+        <div class="kpi-strip">
+            <div><span>Total Contract Value</span><b>$2.45B</b></div>
+            <div><span>Avg Contract Value</span><b>$15,978</b></div>
+            <div><span>Emergency Procurements</span><b>1,248</b></div>
+            <div><span>Sole-Source Contracts</span><b>2,156</b></div>
+            <div><span>Vendor Concentration (HHI)</span><b>0.14</b></div>
+        </div>
+        """, unsafe_allow_html=True)
 
     # =========================
     # RIGHT PANEL
     # =========================
     with right:
+
+        # PROJECT OVERVIEW
         st.markdown("""
         <div class="side-card">
-            <h3>📋 Project Overview</h3>
+            <h3>Project Overview</h3>
             <div class="mini-grid">
-                <div><span>Total Records</span><b>153,269</b><small>Contracts</small></div>
-                <div><span>Total Vendors</span><b>8,842</b><small>Vendors</small></div>
-                <div><span>Departments</span><b>52</b><small>Departments</small></div>
+                <div><span>Total Records</span><b>153,269</b></div>
+                <div><span>Total Vendors</span><b>8,842</b></div>
+                <div><span>Departments</span><b>52</b></div>
             </div>
-        </div>
-
-        <div class="side-card">
-            <h3>⚡ Quick Actions</h3>
-            <div class="action-row">Explain Market Concentration (HHI) ›</div>
-            <div class="action-row">Show Top Vendors by Spend ›</div>
-            <div class="action-row">Explain NLP Classification ›</div>
-            <div class="action-row">Explain ML Prediction Model ›</div>
-            <div class="action-row">Summarize Key Findings ›</div>
-        </div>
-
-        <div class="side-card">
-            <h3>📈 Risk Distribution</h3>
-            <div class="risk-placeholder">Chart here</div>
-            <div class="risk-level">Low Risk</div>
         </div>
         """, unsafe_allow_html=True)
 
+        # QUICK ACTIONS
+        st.markdown("""
+        <div class="side-card">
+            <h3>Quick Actions</h3>
+            <div class="action">Explain Market Concentration (HHI)</div>
+            <div class="action">Show Top Vendors by Spend</div>
+            <div class="action">Explain NLP Classification</div>
+            <div class="action">Explain ML Prediction Model</div>
+            <div class="action">Summarize Key Findings</div>
+        </div>
+        """, unsafe_allow_html=True)
 
-# =========================
-# CONTEXT FUNCTION (VERY IMPORTANT)
-# =========================
-def get_context():
-    return """
-    This system analyzes government procurement data.
-
-    It includes:
-    - Vendor intelligence and market concentration (HHI)
-    - Risk scoring based on contract behavior
-    - NLP classification of procurement descriptions
-    - Machine learning prediction of contract values
-
-    The system is designed as an AI-powered procurement intelligence platform.
-    """
+        # RISK DISTRIBUTION
+        st.markdown("""
+        <div class="side-card">
+            <h3>Risk Distribution</h3>
+            <div class="risk-chart">Chart Area</div>
+            <div class="risk-level">Low Risk</div>
+        </div>
+        """, unsafe_allow_html=True)
