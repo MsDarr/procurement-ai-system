@@ -12,26 +12,18 @@ import prediction as prediction
 import streamlit as st
 import chatbot
 
-
-
-
-
-# =========================
-# CONFIG
-# =========================
-
-
 # =========================
 # LOAD CSS
 # =========================
+import os
+
 def load_css():
     try:
-        with open("style.css") as f:
+        css_path = os.path.join("assets", "style.css")
+        with open(css_path) as f:
             st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-    except FileNotFoundError:
-        st.warning("style.css not found — using default styling")
-
-load_css()
+    except:
+        pass
 
 # =========================
 # LOAD DATA (GOOGLE DRIVE)
