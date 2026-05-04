@@ -2,139 +2,84 @@ import streamlit as st
 
 def show():
 
-    # =========================
-    # LAYOUT (3 PANEL)
-    # =========================
-    left, center, right = st.columns([1.2, 3.5, 1.8])
-
-    # =========================
-    # CENTER PANEL (AI UI)
-    # =========================
-    with center:
-
-        # HEADER
-        st.markdown("""
+    st.markdown("""
+    <div class="ai-page-title">
         <div>
-            <p class="big-title">✨ Darrah AI Assistant</p>
-            <p class="subtitle">Your intelligent guide to procurement analytics</p>
+            <h1>✨ Darrah AI Assistant</h1>
+            <p>Your intelligent guide to procurement analytics</p>
         </div>
-        """, unsafe_allow_html=True)
+        <div class="ai-badge">🧠 AI Powered</div>
+    </div>
+    """, unsafe_allow_html=True)
 
-        # =========================
-        # AI CARD (FIXED)
-        # =========================
+    center, right = st.columns([2.6, 1.4], gap="large")
+
+    with center:
         st.markdown("""
-        <div class="ai-card">
-            <div style="display:flex; gap:15px; align-items:center;">
-                <div style="font-size:30px;">🤖</div>
-                <div>
-                    <h3 style="margin:0;">Hello! I'm Darrah AI Assistant 👋</h3>
-                    <p style="margin:0; font-size:14px;">
-                        I can help explain procurement concepts, dashboard metrics, vendor intelligence, and risk indicators.
-                    </p>
-                </div>
+        <div class="hero-card">
+            <div class="bot-avatar">🤖</div>
+            <div>
+                <h2>Hello! I'm Darrah AI Assistant 👋</h2>
+                <p>I can help you understand procurement data, explain key metrics, identify risks, and provide insights to support your analysis.</p>
             </div>
         </div>
         """, unsafe_allow_html=True)
-
-        st.markdown("<br>", unsafe_allow_html=True)
-
-        # =========================
-        # QUICK QUESTIONS
-        # =========================
-        if "quick_answer" not in st.session_state:
-            st.session_state.quick_answer = ""
 
         q1, q2, q3, q4 = st.columns(4)
-
         with q1:
-            if st.button("📊 HHI"):
-                st.session_state.quick_answer = "HHI measures vendor concentration. High HHI = few vendors dominate spending."
-
+            st.button("📊 What is HHI?")
         with q2:
-            if st.button("⚠️ Risk"):
-                st.session_state.quick_answer = "Risk is based on contract value, vendor dominance, emergency procurement, and unusual spending."
-
+            st.button("🛡️ Explain risk gauge")
         with q3:
-            if st.button("🤖 ML"):
-                st.session_state.quick_answer = "The ML model predicts contract values using historical procurement patterns."
-
+            st.button("🧠 How does ML work?")
         with q4:
-            if st.button("🏆 Vendors"):
-                st.session_state.quick_answer = "Top vendors are those with highest total contract value and frequency."
+            st.button("👥 Top vendors")
 
-        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown("""
+        <div class="user-bubble">
+            <b>You</b><br>
+            What does the risk gauge mean?
+        </div>
 
-        # =========================
-        # CHAT DISPLAY (FIXED BLOCKS)
-        # =========================
-        if st.session_state.quick_answer:
-            st.markdown(f"""
-            <div class="chat-bot">
-                {st.session_state.quick_answer}
-            </div>
-            """, unsafe_allow_html=True)
+        <div class="bot-bubble">
+            <b>🤖 Darrah AI Assistant</b><br><br>
+            The risk gauge represents the overall procurement risk level based on the risk scoring model.<br><br>
+            ✅ High contract value<br>
+            ✅ Emergency procurement<br>
+            ✅ Sole-source contracts<br>
+            ✅ Vendor concentration<br>
+            ✅ Unusual spending patterns<br><br>
+            The gauge gives a quick overview of whether the procurement environment is Low Risk, Moderate Risk, or High Risk.
+        </div>
 
-        # =========================
-        # USER INPUT
-        # =========================
-        question = st.text_input("Ask anything about the project...")
+        <div class="input-shell">
+            Ask anything about the project, data, or analysis... <span>🎤 ➤</span>
+        </div>
+        """, unsafe_allow_html=True)
 
-        if question:
-            q = question.lower()
-
-            if "hhi" in q or "market concentration" in q:
-                answer = "HHI measures how concentrated spending is among vendors."
-
-            elif "risk" in q:
-                answer = "Risk is based on contract value, vendor dominance, emergency procurement, and unusual spending."
-
-            elif "ml" in q:
-                answer = "The ML model predicts contract value using historical procurement data."
-
-            elif "vendor" in q:
-                answer = "Vendor intelligence identifies top vendors and market dominance."
-
-            else:
-                answer = "This assistant currently uses project knowledge. Next step: connect to AI."
-
-            # USER MESSAGE (RIGHT)
-            st.markdown(f"""
-            <div class="chat-user">
-                {question}
-            </div>
-            """, unsafe_allow_html=True)
-
-            # BOT MESSAGE (LEFT)
-            st.markdown(f"""
-            <div class="chat-bot">
-                {answer}
-            </div>
-            """, unsafe_allow_html=True)
-
-    # =========================
-    # RIGHT PANEL
-    # =========================
     with right:
+        st.markdown("""
+        <div class="side-card">
+            <h3>📋 Project Overview</h3>
+            <div class="mini-grid">
+                <div><span>Total Records</span><b>153,269</b><small>Contracts</small></div>
+                <div><span>Total Vendors</span><b>8,842</b><small>Vendors</small></div>
+                <div><span>Departments</span><b>52</b><small>Departments</small></div>
+            </div>
+        </div>
 
-        st.markdown("### 📊 Project Overview")
+        <div class="side-card">
+            <h3>⚡ Quick Actions</h3>
+            <div class="action-row">Explain Market Concentration (HHI) ›</div>
+            <div class="action-row">Show Top Vendors by Spend ›</div>
+            <div class="action-row">Explain NLP Classification ›</div>
+            <div class="action-row">Explain ML Prediction Model ›</div>
+            <div class="action-row">Summarize Key Findings ›</div>
+        </div>
 
-        c1, c2, c3 = st.columns(3)
-        c1.metric("Records", "153,269")
-        c2.metric("Vendors", "8,842")
-        c3.metric("Departments", "52")
-
-        st.markdown("<hr>", unsafe_allow_html=True)
-
-        st.markdown("### ⚡ Quick Actions")
-        st.button("Explain HHI")
-        st.button("Top Vendors")
-        st.button("Explain NLP")
-        st.button("ML Model")
-
-        st.markdown("<hr>", unsafe_allow_html=True)
-
-        st.markdown("### 📈 Risk Distribution")
-        st.write("Chart here")
-
-        st.success("Low Risk")
+        <div class="side-card">
+            <h3>📈 Risk Distribution</h3>
+            <div class="risk-placeholder">Risk chart here</div>
+            <div class="risk-level">Low Risk</div>
+        </div>
+        """, unsafe_allow_html=True)
