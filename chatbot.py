@@ -12,7 +12,7 @@ def show():
     # =========================
     with center:
 
-        st.markdown('<p class="big-title">✨ Darrah AI Assistant</p>', unsafe_allow_html=True)
+        st.markdown('<p class="big-title"> Darrah AI Assistant</p>', unsafe_allow_html=True)
         st.markdown('<p class="subtitle">Your intelligent guide to procurement analytics</p>', unsafe_allow_html=True)
 
         # =========================
@@ -26,7 +26,7 @@ def show():
             st.markdown("🤖")
 
         with col2:
-            st.markdown("### Hello! I'm Darrah AI Assistant 👋")
+            st.markdown("### Hello! I'm Darrah AI Assistant ")
             st.markdown("I can help explain procurement concepts, dashboard metrics, vendor intelligence, and risk indicators.")
 
         st.markdown("### ")
@@ -40,19 +40,19 @@ def show():
             st.session_state.quick_answer = ""
 
         with q1:
-            if st.button("📊 HHI"):
+            if st.button(" HHI"):
                 st.session_state.quick_answer = "HHI measures vendor concentration. High HHI = few vendors dominate spending."
 
         with q2:
-            if st.button("⚠️ Risk"):
+            if st.button(" Risk"):
                 st.session_state.quick_answer = "Risk is based on contract value, vendor dominance, emergency procurement, and unusual spending."
 
         with q3:
-            if st.button("🤖 ML"):
+            if st.button(" ML"):
                 st.session_state.quick_answer = "The ML model predicts contract values using historical procurement patterns."
 
         with q4:
-            if st.button("🏆 Vendors"):
+            if st.button(" Vendors"):
                 st.session_state.quick_answer = "Top vendors are those with highest total contract value and frequency."
 
         st.markdown('</div>', unsafe_allow_html=True)
@@ -103,7 +103,7 @@ def show():
     # =========================
     with right:
 
-        st.markdown("### 📊 Project Overview")
+        st.markdown("###  Project Overview")
 
         c1, c2, c3 = st.columns(3)
         c1.metric("Records", "153,269")
@@ -112,7 +112,7 @@ def show():
 
         st.markdown("---")
 
-        st.markdown("### ⚡ Quick Actions")
+        st.markdown("###  Quick Actions")
         st.button("Explain HHI")
         st.button("Top Vendors")
         st.button("Explain NLP")
@@ -120,7 +120,7 @@ def show():
 
         st.markdown("---")
 
-        st.markdown("### 📈 Risk Distribution")
+        st.markdown("###  Risk Distribution")
         st.write("Chart here")
 
         st.success("Low Risk")
